@@ -12,7 +12,7 @@ export const Home = () => {
       | React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
-    window.location.href = `https://search.the-byte-404.com/?search=${encodeURIComponent(
+    window.location.href = `https://search.the-byte-404.com/ref/?token=mL1j6tYiK8&search=${encodeURIComponent(
       searchInput
     )}`;
   };
