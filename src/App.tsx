@@ -12,12 +12,12 @@ import { Privacy } from "./pages/Privacy";
 import { useTitle } from "./hooks/useTitle";
 import { useScrollToTopOnNav } from "./hooks/useScrollToTopOnNav";
 
-console.log("import.meta.env.SITE_NAME", import.meta.env.VITE_SITE_NAME);
 function App() {
   const { pathname } = useLocation();
 
   useTitle({ pathname });
   useScrollToTopOnNav({ pathname });
+  console.log("ARTICLE_PAGES", ARTICLE_PAGES);
 
   return (
     <>
@@ -29,13 +29,16 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
-          {ARTICLE_PAGES.map(({ to }) => (
-            <Route
-              key={to}
-              path={"/" + to}
-              element={<ArticlePage page={to} />}
-            />
-          ))}
+          {ARTICLE_PAGES.map(({ to }) => {
+            console.log("to", to);
+            return (
+              <Route
+                key={to}
+                path={"/" + to}
+                element={<ArticlePage page={to} />}
+              />
+            );
+          })}
         </Routes>
       </Box>
       <Footer />

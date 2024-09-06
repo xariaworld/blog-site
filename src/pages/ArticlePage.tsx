@@ -41,7 +41,9 @@ export const ArticlePage = ({ page }: { page: string }) => {
     <Box>
       <ImageSection title={article.name} titleImage={article.heroImageUrl} />
       {article.sections.map((section, index) => {
-        if (section.type === "text") {
+        const isTextSection = section.type === "text";
+        const isHtmlSection = section.type === "html";
+        if (isTextSection || isHtmlSection) {
           return (
             <React.Fragment key={index}>
               {section.topImageUrl && (
@@ -49,6 +51,8 @@ export const ArticlePage = ({ page }: { page: string }) => {
               )}
               <Box
                 key={index}
+                maxWidth={1200}
+                mx="auto"
                 sx={{
                   p: 4,
                   textAlign: "start",
@@ -56,21 +60,27 @@ export const ArticlePage = ({ page }: { page: string }) => {
                   textWrap: "wrap",
                 }}
               >
-                {section.title && (
-                  <Typography variant="h4" maxWidth={1200} mx="auto">
-                    {section.title}
-                  </Typography>
+                {isTextSection && section.title && (
+                  <Typography variant="h4">{section.title}</Typography>
                 )}
-                <Typography maxWidth={1200} mx="auto">
-                  {section.text}
-                </Typography>
+                {isTextSection && (
+                  <Typography mx="auto">{section.text}</Typography>
+                )}
+                {isHtmlSection && (
+                  <Box
+                    sx={{
+                      "&p": { margin: 0 },
+                    }}
+                    dangerouslySetInnerHTML={{ __html: section.text }}
+                  />
+                )}
               </Box>
               {section.bottomImageUrl && (
                 <ImageSection title="" titleImage={section.bottomImageUrl} />
               )}
             </React.Fragment>
           );
-        } else {
+        } else if (section.type === "image") {
           return <ImageSection title="" titleImage={section.src} key={index} />;
         }
       })}

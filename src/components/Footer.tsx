@@ -10,9 +10,9 @@ export const Footer = () => {
       bgcolor="var(--bgColor)"
     >
       <Box maxWidth={900} m="20px auto">
-        <Box textAlign="start" display="flex" alignItems="center">
+        <Box textAlign="start" display="flex" alignItems="flex-end">
           <img
-            src="logo.webp"
+            src={import.meta.env.VITE_LOGO}
             alt="the byte 404 logo"
             style={{ ...imgSx, width: "200px" }}
           />

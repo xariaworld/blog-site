@@ -1,14 +1,15 @@
 {
   "name": "the-byte-404",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "bump": "node scripts/bump.cjs"
+    "bump": "node scripts/bump.cjs",
+    "serve": "npx serve dist"
   },
   "dependencies": {
     "@emotion/styled": "^11.13.0",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/node": "^22.5.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

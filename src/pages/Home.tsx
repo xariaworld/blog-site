@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { centeredColumnSx, centerSx, imgSx, pSx } from "../sx";
-import { ARTICLE_PAGES } from "../constants";
+import { ARTICLE_PAGES, SITE_INTRO } from "../constants";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,7 @@ export const Home = () => {
   return (
     <Box mt={8} pb={8}>
       <Box>
-        <img src="logo.webp" alt="" />
+        <img style={{ maxWidth: 500 }} src={import.meta.env.VITE_LOGO} alt="" />
       </Box>
       <Box
         component="form"
@@ -59,27 +59,22 @@ export const Home = () => {
         </Button>
       </Box>
       <Box {...centeredColumnSx}>
-        <Box {...centerSx}>
-          <img
-            src="home-title-1.webp"
-            alt="tech insights"
-            style={{ maxWidth: "480px" }}
-          />
-        </Box>
-        <Box sx={pSx}>
-          Welcome to "The Byte 404" - your cozy corner in the digital world!
-          We're all about making tech less of a maze and more of a friendly
-          chat. Here, we break down the geek speak, explore cool gadgets, and
-          share what's buzzing in the tech neighborhood. Join us on this
-          laid-back journey where we unravel the digital mysteries, sprinkle in
-          some fun, and keep things light and breezy.
-        </Box>
-        <Box sx={pSx}>
-          Whether you're a tech guru or just dipping your toes into the digital
-          pool, "The Byte 404" is your go-to spot for byte-sized tech stories.
-          So, kick back, relax, and let's navigate the tech world together - no
-          coding manual required! Welcome home.
-        </Box>
+        {import.meta.env.VITE_HOME_TITLE && (
+          <Box {...centerSx}>
+            <img
+              src={import.meta.env.VITE_HOME_TITLE}
+              alt="home title"
+              style={{ maxWidth: "480px" }}
+            />
+          </Box>
+        )}
+        {SITE_INTRO.map((paragraph) => {
+          return (
+            <Box sx={pSx} key={paragraph}>
+              {paragraph}
+            </Box>
+          );
+        })}
       </Box>
 
       <Box mt={6}>
@@ -94,8 +89,8 @@ export const Home = () => {
           mx="auto"
         >
           {ARTICLE_PAGES.map(({ name, to, thumbnailImageUrl }) => (
-            <Link to={to}>
-              <Box key={to}>
+            <Link key={to} to={to}>
+              <Box>
                 <Box>
                   <img
                     style={{ ...imgSx, maxWidth: "300px" }}
