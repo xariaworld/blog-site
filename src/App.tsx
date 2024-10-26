@@ -11,6 +11,7 @@ import { Terms } from "./pages/Terms";
 import { Privacy } from "./pages/Privacy";
 import { useTitle } from "./hooks/useTitle";
 import { useScrollToTopOnNav } from "./hooks/useScrollToTopOnNav";
+import { Statement } from "./pages/Statement";
 
 function App() {
   const { pathname } = useLocation();
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/statement" element={<Statement />} />
           <Route path="/privacy" element={<Privacy />} />
           {ARTICLE_PAGES.map(({ to }) => {
             console.log("to", to);
