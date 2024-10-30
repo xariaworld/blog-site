@@ -18,7 +18,6 @@ function App() {
 
   useTitle({ pathname });
   useScrollToTopOnNav({ pathname });
-  console.log("ARTICLE_PAGES", ARTICLE_PAGES);
 
   return (
     <>
@@ -32,7 +31,6 @@ function App() {
           <Route path="/statement" element={<Statement />} />
           <Route path="/privacy" element={<Privacy />} />
           {ARTICLE_PAGES.map(({ to }) => {
-            console.log("to", to);
             return (
               <Route
                 key={to}

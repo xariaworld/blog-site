@@ -22,12 +22,16 @@ interface HtmlSection {
   bottomImageUrl?: string;
 }
 
-export interface Article {
+export interface BaseArticle {
   name: string;
-  to: string;
+  to?: string;
   heroImageUrl: string;
   thumbnailImageUrl: string;
   sections: (ImageSection | TextSection | HtmlSection)[];
+}
+
+export interface Article extends BaseArticle {
+  to: string;
 }
 
 export const ARTICLE_PAGES: Article[] = data.ARTICLE_PAGES;

@@ -5,21 +5,27 @@ import { version } from "./package.json";
 
 import * as byte404 from "./src/data/byte-404";
 import * as betterLife from "./src/data/better-life";
+import * as gourmet from "./src/data/gourmet-haven";
 
 const sites = {
   "byte-404": byte404,
   "better-life": betterLife,
+  "gourmet-haven": gourmet,
 };
-console.log("sites", sites);
 
 export default defineConfig(() => {
   const env = loadEnv("", process.cwd());
   const VITE_SITE_CODE = env.VITE_SITE_CODE as keyof typeof sites;
+  const otherSiteCodes = (Object.keys(sites) as (keyof typeof sites)[]).filter(
+    (code) => code !== VITE_SITE_CODE
+  );
 
   return {
     plugins: [
       react(),
       zipPack({
+        filter: (_fileName, filePath) =>
+          otherSiteCodes.every((code) => !filePath.includes(code)),
         outFileName: `${VITE_SITE_CODE}-v${version}.zip`,
       }),
       {

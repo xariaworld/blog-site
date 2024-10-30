@@ -52,6 +52,8 @@ export const Home = () => {
             color: "black",
             p: "10px 20px",
             borderRadius: "20px",
+            // hover
+            "&:hover": { bgcolor: "rgba(255,255,255,0.8)" },
           }}
           type="submit"
         >
