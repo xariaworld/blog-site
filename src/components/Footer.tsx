@@ -39,7 +39,7 @@ export const Footer = () => {
           >
             <Link to="/contact">Contact us</Link>
             <Link to="/terms">Terms & cons.</Link>
-            <Link to="/statement">Statement</Link>
+            <Link to="/statement">For Advertisers</Link>
             <Link to="/privacy">Privacy policy</Link>
           </Box>
         </Box>
